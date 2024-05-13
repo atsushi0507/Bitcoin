@@ -2,6 +2,7 @@ import streamlit as st
 from Daq import Daq
 import pandas as pd
 from plot import make_fig
+from datetime import datetime
 
 
 def main():
@@ -30,6 +31,17 @@ def main():
                 "4h",
                 "1d"
             ]
+        )
+
+        today = datetime.today()
+        today_str = f"{today.year}-{today.month}-{today.day}"
+        with open("bitflyer.db", "rb") as f:
+            db_bytes = f.read()
+        st.download_button(
+            label="DBファイルをダウンロードする",
+            data=db_bytes,
+            file_name=f"bitflyer_{today_str}.db",
+            mime="application/octet-stream"
         )
 
     df = daq.read_data_from_db()
