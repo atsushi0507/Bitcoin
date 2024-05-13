@@ -11,6 +11,13 @@ def make_fig(df, rule):
     tmp_df, gc, dc = calc_macd(tmp_df)
     tmp_df = calc_bollinger(tmp_df)
 
+    max_data = 5000
+    if len(tmp_df) > max_data:
+        tmp_df = tmp_df.tail(max_data)
+        timestamp = tmp_df.index.min()
+        gc = gc[timestamp:]
+        dc = dc[timestamp:]
+
     layout = {
         "height": 1000,
         "title": f"BitFlyer FX | {rule}",
