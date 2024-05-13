@@ -3,6 +3,9 @@ import requests
 from datetime import datetime
 import os
 import pandas as pd
+import streamlit as st
+
+os.environ["CRYPTO_COMPARE_API_KEY"] = st.secrets["CRYPTO_COMPARE_API_KEY"]["key"]
 
 
 class Daq:
