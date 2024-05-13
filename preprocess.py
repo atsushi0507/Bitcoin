@@ -8,9 +8,11 @@ def calc_macd(df):
     tmp_df["MACD"] = tmp_df.short - tmp_df.long
     tmp_df["Signal"] = tmp_df.MACD.ewm(span=9).mean()
     tmp_df["Histogram"] = tmp_df.MACD - tmp_df.Signal
-    tmp_df["difference"] = np.sign(tmp_df.Histogram) - np.sign(tmp_df.Histogram.shift())
-    gc = tmp_df[tmp_df.difference==2]
-    dc = tmp_df[tmp_df.difference==-2]
+    tmp_df["difference"] = (
+        np.sign(tmp_df.Histogram) - np.sign(tmp_df.Histogram.shift())
+    )
+    gc = tmp_df[tmp_df.difference == 2]
+    dc = tmp_df[tmp_df.difference == -2]
     return tmp_df, gc, dc
 
 
@@ -20,7 +22,7 @@ def calc_bollinger(df):
     tmp_df["MA"] = tmp_df.close.rolling(window).mean()
     tmp_df["std"] = tmp_df.close.rolling(window).std()
     tmp_df["bol_up2sigma"] = tmp_df.MA + (2 * tmp_df["std"])
-    tmp_df["bol_down3sigma"] = tmp_df.MA - (2 * tmp_df["std"])
+    tmp_df["bol_down2sigma"] = tmp_df.MA - (2 * tmp_df["std"])
     return tmp_df
 
 

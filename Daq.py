@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 import pandas as pd
 
+
 class Daq:
     def __init__(self):
         self.conn = sqlite3.connect("bitflyer.db")
@@ -23,7 +24,7 @@ class Daq:
                        volumefrom FLOAT,
                        volumeto FLOAT)''')
         self.conn.commit()
-        
+
     def get_min_historical(self):
         url = self.base_url + "/histominute"
         params = {
@@ -40,7 +41,7 @@ class Daq:
         else:
             print("Error fetching data from CryptoCompare API")
             return None
-        
+
     def insert_data_to_db(self, data):
         if data:
             for candle in data:
@@ -70,7 +71,6 @@ class Daq:
                 print("If you want to set date range, you need to specify both of start and end")
             else:
                 return pd.read_sql(f"""SELECT open, high, low, close, volumeto, volumefrom, timestamp FROM ohlc WHERE timestamp >= '{start}' AND timestamp <= '{end}' ORDER BY timestamp""", self.conn)
-
 
 
 if __name__ == "__main__":

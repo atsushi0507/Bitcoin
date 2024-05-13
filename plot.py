@@ -1,21 +1,26 @@
 import plotly.graph_objects as go
 import plotly.io as pio
-from plotly.subplots import make_subplots
+# from plotly.subplots import make_subplots
 from preprocess import resample, calc_macd, calc_bollinger
 
 pio.templates.default = "plotly_dark"
 
 
 def make_fig(df, rule):
-    tmp_df = resample(rule)
+    tmp_df = resample(df, rule)
     tmp_df, gc, dc = calc_macd(tmp_df)
     tmp_df = calc_bollinger(tmp_df)
 
     layout = {
-        "hight": 1000,
+        "height": 1000,
         "title": f"BitFlyer FX | {rule}",
         "xaxis": {"title": "Date", "rangeslider": {"visible": False}},
-        "yaxis1": {"title": "Price[¥]", "side": "left", "tickformat": ",", "domain": [.45, 1.0]},
+        "yaxis1": {
+            "title": "Price[¥]",
+            "side": "left",
+            "tickformat": ",",
+            "domain": [.45, 1.0]
+            },
         "yaxis2": {"domain": [.45, .45]},
         "yaxis3": {"domain": [.30, .45], "title": "Volume", "side": "right"},
         "yaxis4": {"domain": [.00, .30], "title": "MACD", "side": "right"},
@@ -58,7 +63,7 @@ def make_fig(df, rule):
         go.Scatter(
             x=tmp_df.index,
             y=tmp_df.bol_down2sigma,
-            name="BB", 
+            name="BB",
             line={"width": .5, "color": "blue"},
             fill="tonexty",
             fillcolor="rgba(0, 0, 255, 0.2)",
