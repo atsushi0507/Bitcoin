@@ -8,7 +8,7 @@ from datetime import datetime
 def main():
     st.set_page_config(
         page_title="Bitcoin",
-        page_icon=":shark"
+        page_icon=":data"
     )
 
     daq = Daq()

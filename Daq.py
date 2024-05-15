@@ -4,13 +4,18 @@ from datetime import datetime
 import os
 import pandas as pd
 import streamlit as st
+import shutil
 
 os.environ["CRYPTO_COMPARE_API_KEY"] = st.secrets["CRYPTO_COMPARE_API_KEY"]["key"]
 
 
 class Daq:
     def __init__(self):
-        self.conn = sqlite3.connect("bitflyer.db")
+        self.git_db = "bitflyer.db"
+        self.deploy_db = "bitflyer_deploy.db"
+        shutil.copyfile(self.git_db, self.deploy_db)
+
+        self.conn = sqlite3.connect(self.deploy_db)
         self.c = self.conn.cursor()
         self.base_url = "https://min-api.cryptocompare.com/data/v2"
         self.create_table()
