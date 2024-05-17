@@ -19,6 +19,7 @@ class BQClient:
         self.base_url = "https://min-api.cryptocompare.com/data/v2"
         self.api_key = st.secrets["CRYPTO_COMPARE_API_KEY"]["key"]
 
+    @st.experimental_memo(ttl=24 * 60 * 60)
     def load_data(self):
         query = """
             SELECT
