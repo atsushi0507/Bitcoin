@@ -50,7 +50,7 @@ class BQClient:
             ]
             df = pd.DataFrame(data)
             df["timestamp"] = df["time"].apply(lambda x: datetime.fromtimestamp(int(x)).strftime("%Y-%m-%d %H:%M:%S"))
-            df["timestamp"] = pd.to_datetime(df.timestamp, utc=True) #.dt.tz_convert("Asia/Tokyo")
+            df["timestamp"] = pd.to_datetime(df.timestamp, utc=True).dt.tz_convert("Asia/Tokyo")
             self.df = df[use_cols]
             return self.df
         else:

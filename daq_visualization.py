@@ -21,8 +21,8 @@ def main():
             tmp = client.get_min_historical()
             st.dataframe(client.load_data().sort_values(by="timestamp").tail())
             st.dataframe(tmp.tail())
-            #client.insert_data_to_db()
-            #st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
+            client.insert_data_to_db()
+            st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
 
         rule_option = st.selectbox(
             "ローソク足の選択",
