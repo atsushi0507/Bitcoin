@@ -11,7 +11,7 @@ def main():
         page_icon=":coin"
     )
 
-    client = BQClient(st.secrets["gcp_project_id"])
+    client = BQClient(st.secrets["gcp_service_account"]["project_id"])
 
     with st.sidebar:
         st.sidebar.header("Config")

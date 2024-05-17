@@ -1,6 +1,7 @@
 from google.cloud import bigquery
 from google.oauth2 import service_account
 import pandas as pd
+import pandas_gbq
 import requests
 from datetime import datetime
 import streamlit as st
@@ -62,7 +63,13 @@ class BQClient:
         st.dataframe(self.unique_df)
 
         if not self.unique_df.empty:
-            self.unique_df.to_gbq(
+            # self.unique_df.to_gbq(
+            #     destination_table="bitflyer.bitcoin_jpy",
+            #     project_id=self.project_id,
+            #     if_exists="append"
+            # )
+            pandas_gbq.to_gbq(
+                dataframe=self.unique_df,
                 destination_table="bitflyer.bitcoin_jpy",
                 project_id=self.project_id,
                 if_exists="append"
