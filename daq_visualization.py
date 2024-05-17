@@ -19,7 +19,7 @@ def main():
             st.write("Getting data")
             #ohlc_data = daq.get_min_historical()
             tmp = client.get_min_historical()
-            st.dataframe(client.load_data().tail())
+            st.dataframe(client.load_data().sort_values(by="timestamp").tail())
             st.dataframe(tmp.tail())
             #client.insert_data_to_db()
             #st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
