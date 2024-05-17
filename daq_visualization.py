@@ -18,9 +18,11 @@ def main():
         if st.button("Get Data"):
             st.write("Getting data")
             #ohlc_data = daq.get_min_historical()
-            _ = client.get_min_historical()
-            client.insert_data_to_db()
-            st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
+            tmp = client.get_min_historical()
+            st.dataframe(client.load_data().tail())
+            st.dataframe(tmp.tail())
+            #client.insert_data_to_db()
+            #st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
 
         rule_option = st.selectbox(
             "ローソク足の選択",
