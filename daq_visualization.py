@@ -1,5 +1,6 @@
 import streamlit as st
 from Daq import Daq
+from bq import BQClient
 import pandas as pd
 from plot import make_fig
 from datetime import datetime
@@ -8,18 +9,20 @@ from datetime import datetime
 def main():
     st.set_page_config(
         page_title="Bitcoin",
-        page_icon=":data"
+        page_icon=":coin"
     )
 
     daq = Daq()
+    client = BQClient(st.secrets["gcp_project_id"])
 
     with st.sidebar:
         st.sidebar.header("Config")
         if st.button("Get Data"):
             st.write("Getting data")
-            ohlc_data = daq.get_min_historical()
-            daq.insert_data_to_db(ohlc_data)
-            st.dataframe(daq.read_data_from_db().tail(10))
+            #ohlc_data = daq.get_min_historical()
+            _ = client.get_min_historical()
+            client.insert_data_to_db()
+            st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
 
         rule_option = st.selectbox(
             "ローソク足の選択",
@@ -44,7 +47,7 @@ def main():
             mime="application/octet-stream"
         )
 
-    df = daq.read_data_from_db()
+    df = client.load_data()
 
     df["timestamp"] = pd.to_datetime(df.timestamp, utc=True).dt.tz_convert("Asia/Tokyo")
     df = df.set_index("timestamp")
