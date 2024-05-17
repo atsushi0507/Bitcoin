@@ -17,12 +17,10 @@ def main():
         st.sidebar.header("Config")
         if st.button("Get Data"):
             st.write("Getting data")
-            #ohlc_data = daq.get_min_historical()
             tmp = client.get_min_historical()
             st.dataframe(client.load_data().sort_values(by="timestamp").tail())
             st.dataframe(tmp.tail())
             client.insert_data_to_db()
-            st.dataframe(client.unique_df.sort_values("timestamp").tail(10))
 
         rule_option = st.selectbox(
             "ローソク足の選択",
@@ -49,7 +47,7 @@ def main():
 
     df = client.load_data()
 
-    df["timestamp"] = pd.to_datetime(df.timestamp, utc=True)# .dt.tz_convert("Asia/Tokyo")
+    df["timestamp"] = pd.to_datetime(df.timestamp, utc=True).dt.tz_convert("Asia/Tokyo")
     df = df.set_index("timestamp")
 
     if rule_option is not None:
