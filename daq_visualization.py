@@ -47,7 +47,7 @@ def main():
 
     df = client.load_data()
 
-    df["timestamp"] = pd.to_datetime(df.timestamp, utc=True).dt.tz_convert("Asia/Tokyo")
+    df["timestamp"] = pd.to_datetime(df.timestamp, utc=True)# .dt.tz_convert("Asia/Tokyo")
     df = df.set_index("timestamp")
 
     if rule_option is not None:
