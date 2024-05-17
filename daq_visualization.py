@@ -1,5 +1,4 @@
 import streamlit as st
-from Daq import Daq
 from bq import BQClient
 import pandas as pd
 from plot import make_fig
@@ -12,7 +11,6 @@ def main():
         page_icon=":coin"
     )
 
-    daq = Daq()
     client = BQClient(st.secrets["gcp_project_id"])
 
     with st.sidebar:
