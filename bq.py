@@ -59,6 +59,7 @@ class BQClient:
     def insert_data_to_db(self):
         self.load_data()
         self.unique_df = self.df[~self.df.set_index("timestamp").index.isin(self.bq_df.set_index("timestamp").index)]
+        st.dataframe(self.unique_df)
 
         if not self.unique_df.empty:
             self.unique_df.to_gbq(
