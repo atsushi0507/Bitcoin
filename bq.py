@@ -29,7 +29,7 @@ class BQClient:
                 timestamp DESC
             """
         self.bq_df = self.client.query(query).to_dataframe()
-        # self.bq_df["timestamp"] = pd.to_datetime(self.bq_df.timestamp, utc=True).dt.tz_convert("Asia/Tokyo")
+        self.bq_df["timestamp"] = pd.to_datetime(self.bq_df.timestamp, utc=True)# .dt.tz_convert("Asia/Tokyo")
         return self.bq_df
     
     def get_min_historical(self):
