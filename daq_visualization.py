@@ -18,8 +18,6 @@ def main():
         if st.button("Get Data"):
             st.write("Getting data")
             tmp = client.get_min_historical()
-            st.dataframe(client.load_data().sort_values(by="timestamp").tail())
-            st.dataframe(tmp.tail())
             client.insert_data_to_db()
 
         rule_option = st.selectbox(
@@ -34,18 +32,10 @@ def main():
             ]
         )
 
-        today = datetime.today()
-        today_str = f"{today.year}-{today.month}-{today.day}"
-        with open("bitflyer.db", "rb") as f:
-            db_bytes = f.read()
-        st.download_button(
-            label="DBファイルをダウンロードする",
-            data=db_bytes,
-            file_name=f"bitflyer_{today_str}.db",
-            mime="application/octet-stream"
-        )
 
     df = client.load_data()
+    if st.button("Refresh Data"):
+        df = client.load_data()
 
     df["timestamp"] = pd.to_datetime(df.timestamp, utc=True).dt.tz_convert("Asia/Tokyo")
     df = df.set_index("timestamp")
