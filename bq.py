@@ -9,14 +9,17 @@ import streamlit as st
 
 class BQClient:
     def __init__(self):
-        credentials = service_account.Credentials.from_service_account_info(
+        self.credentials = service_account.Credentials.from_service_account_info(
             st.secrets["gcp_service_account"]
         )
-        self.project_id = credentials.project_id
+        self.project_id = self.credentials.project_id
         self.client = bigquery.Client(
-            credentials=credentials,
-            project=credentials.project_id
+            credentials=self.credentials,
+            project=self.credentials.project_id
         )
+        self.dataset_id = "bitflyer"
+        self.table_id = "bitcoin_jpy"
+        self.table_ref = f"{self.dataset_id}.{self.table_id}"
         self.base_url = "https://min-api.cryptocompare.com/data/v2"
         self.api_key = st.secrets["CRYPTO_COMPARE_API_KEY"]["key"]
 
@@ -71,8 +74,9 @@ class BQClient:
             try:
                 pandas_gbq.to_gbq(
                     self.unique_df,
-                    "bitflyer.bitcoin_jpy",
-                    project_id=st.secrets["gcp_service_account"]["project_id"],
+                    self.table_ref,
+                    project_id=self.client.project,
+                    credentials=self.credentials,
                     if_exists="append"
                 )
             except Exception as e:
