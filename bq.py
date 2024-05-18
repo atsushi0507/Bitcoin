@@ -68,11 +68,14 @@ class BQClient:
             #     project_id=self.project_id,
             #     if_exists="append"
             # )
-            pandas_gbq.to_gbq(
-                dataframe=self.unique_df,
-                destination_table="bitflyer.bitcoin_jpy",
-                project_id=self.project_id,
-                if_exists="append"
-            )
+            try:
+                pandas_gbq.to_gbq(
+                    dataframe=self.unique_df,
+                    destination_table="bitflyer.bitcoin_jpy",
+                    project_id=self.project_id,
+                    if_exists="append"
+                )
+            except Exception as e:
+                st.error(f"Error  inserting data: {e}")
         else:
             print("差分はありません")
