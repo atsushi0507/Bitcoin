@@ -8,14 +8,14 @@ import streamlit as st
 
 
 class BQClient:
-    def __init__(self, project_id):
+    def __init__(self):
         credentials = service_account.Credentials.from_service_account_info(
             st.secrets["gcp_service_account"]
         )
-        self.project_id = project_id
+        self.project_id = credentials.project_id
         self.client = bigquery.Client(
             credentials=credentials,
-            project=project_id
+            project=credentials.project_id
         )
         self.base_url = "https://min-api.cryptocompare.com/data/v2"
         self.api_key = st.secrets["CRYPTO_COMPARE_API_KEY"]["key"]
