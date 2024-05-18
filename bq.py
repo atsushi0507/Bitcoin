@@ -70,9 +70,9 @@ class BQClient:
             # )
             try:
                 pandas_gbq.to_gbq(
-                    dataframe=self.unique_df,
-                    destination_table="bitflyer.bitcoin_jpy",
-                    project_id=self.project_id,
+                    self.unique_df,
+                    "bitflyer.bitcoin_jpy",
+                    project_id=st.secrets["gcp_service_account"]["project_id"]
                     if_exists="append"
                 )
             except Exception as e:
