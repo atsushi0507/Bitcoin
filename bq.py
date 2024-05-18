@@ -72,7 +72,7 @@ class BQClient:
                 pandas_gbq.to_gbq(
                     self.unique_df,
                     "bitflyer.bitcoin_jpy",
-                    project_id=st.secrets["gcp_service_account"]["project_id"]
+                    project_id=st.secrets["gcp_service_account"]["project_id"],
                     if_exists="append"
                 )
             except Exception as e:
