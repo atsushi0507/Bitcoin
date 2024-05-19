@@ -1,1 +1,4 @@
 .streamlit/secrets.toml
+__pycache__
+job/
+db_to_bq.py
