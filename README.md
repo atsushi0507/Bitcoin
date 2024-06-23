@@ -23,7 +23,7 @@ This web application collects and visualizes Bitcoin price data. It fetches 1-mi
   - Display trend information with interactive graphs created using Plotly
 
 ## System Architecture
-
+![System Architect Diagram](https://github.com/atsushi0507/Bitcoin/blob/main/public/system_architect_diagram.png)
 
 # How to Run the Application
 1. Clone the Repository:
