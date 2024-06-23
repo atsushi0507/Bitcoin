@@ -59,6 +59,7 @@ BE --> Graphs : Generate Trends and Graphs
 Graphs --> FE : Display Interactive Graphs
 
 @enduml
+```
 
 # How to Run the Application
 1. Clone the Repository:
@@ -92,7 +93,7 @@ This project is licensed under the MIT License. See the **LICENSE** file for det
 5. Create a new Pull Request
 
 # Acknowledgements
-[CryptoCompare](https://www.cryptocompare.com) for the Bitcoin price data API
-[Google BigQuery](https://cloud.google.com/free/?hnv=true&e=0&utm_source=google&utm_medium=cpc&utm_campaign=japac-JP-all-ja-dr-BKWS-all-core-trial-EXA-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_602341359562-ADGP_Hybrid+%7C+BKWS+-+EXA+%7C+Txt+-GCP-General-core+brand-main-KWID_43700080198428345-aud-970366092687:kwd-87853815&userloc_1009314-network_g&utm_term=KW_gcp&gad_source=1&gclid=CjwKCAjw7NmzBhBLEiwAxrHQ-cP9g5tYuXpWRrj89OE0MxUd2E6xehjgsErT7zVz5J60YytDH678MhoCGnEQAvD_BwE&gclsrc=aw.ds&hl=ja) for the data storage solution
-[Streamlit](https://cloud.google.com/s/results?q&_gl=1*183jm2h*_up*MQ..&gclid=CjwKCAjw7NmzBhBLEiwAxrHQ-cP9g5tYuXpWRrj89OE0MxUd2E6xehjgsErT7zVz5J60YytDH678MhoCGnEQAvD_BwE&gclsrc=aw.ds) for the frontend framework
-[Plotly](https://plotly.github.io/plotly.py-docs/generated/plotly.graph_objects.Heatmap.html) for the interactive graphs
+[CryptoCompare](https://www.cryptocompare.com) for the Bitcoin price data API  
+[Google BigQuery](https://cloud.google.com/free/?hnv=true&e=0&utm_source=google&utm_medium=cpc&utm_campaign=japac-JP-all-ja-dr-BKWS-all-core-trial-EXA-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_602341359562-ADGP_Hybrid+%7C+BKWS+-+EXA+%7C+Txt+-GCP-General-core+brand-main-KWID_43700080198428345-aud-970366092687:kwd-87853815&userloc_1009314-network_g&utm_term=KW_gcp&gad_source=1&gclid=CjwKCAjw7NmzBhBLEiwAxrHQ-cP9g5tYuXpWRrj89OE0MxUd2E6xehjgsErT7zVz5J60YytDH678MhoCGnEQAvD_BwE&gclsrc=aw.ds&hl=ja) for the data storage solution   
+[Streamlit](https://cloud.google.com/s/results?q&_gl=1*183jm2h*_up*MQ..&gclid=CjwKCAjw7NmzBhBLEiwAxrHQ-cP9g5tYuXpWRrj89OE0MxUd2E6xehjgsErT7zVz5J60YytDH678MhoCGnEQAvD_BwE&gclsrc=aw.ds) for the frontend framework  
+[Plotly](https://plotly.github.io/plotly.py-docs/generated/plotly.graph_objects.Heatmap.html) for the interactive graphs  
