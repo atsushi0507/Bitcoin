@@ -7,16 +7,19 @@ pio.templates.default = "plotly_dark"
 
 
 def make_fig(df, rule):
-    tmp_df = resample(df, rule)
-    tmp_df, gc, dc = calc_macd(tmp_df)
-    tmp_df = calc_bollinger(tmp_df)
+    tmp_df = resample(df, rule)    
 
     max_data = 2500
     if len(tmp_df) > max_data:
         tmp_df = tmp_df.tail(max_data)
+        tmp_df, gc, dc = calc_macd(tmp_df)
+        tmp_df = calc_bollinger(tmp_df)
         timestamp = tmp_df.index.min()
         gc = gc[timestamp:]
         dc = dc[timestamp:]
+    else:
+        tmp_df, gc, dc = calc_macd(tmp_df)
+        tmp_df = calc_bollinger(tmp_df)
 
     layout = {
         "height": 1000,
